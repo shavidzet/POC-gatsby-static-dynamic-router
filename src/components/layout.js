@@ -23,8 +23,19 @@ const Layout = ({ children }) => {
     }
   `)
 
+  const [n, setN] = React.useState(0)
+  React.useEffect(() => {
+      const timer = setInterval(() => {
+          setN(n+1)
+      }, 1000);
+      return () => {
+          clearInterval(timer)
+      }
+  }, [n])
+
   return (
     <>
+      {n}
       <Header siteTitle={data.site.siteMetadata.title} />
       <div
         style={{
@@ -48,4 +59,4 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Layout
+export default React.memo(Layout)
