@@ -20,6 +20,9 @@
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
+    "flow-bin": "^0.129.0",
+    "flowtype-loader": "^0.2.2",
+    "gatsby-plugin-flow": "^1.3.11",
     "prettier": "2.0.5"
   },
   "keywords": [

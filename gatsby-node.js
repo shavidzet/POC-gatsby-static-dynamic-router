@@ -5,6 +5,7 @@
  */
 
 // You can delete this file if you're not using it
+const FlowtypePlugin = require('flowtype-loader/plugin')
 
 exports.onCreatePage = async ({ page, actions }) => {
   const { createPage } = actions
@@ -32,4 +33,28 @@ exports.onCreatePage = async ({ page, actions }) => {
     // Update the page.
     createPage(page)
   }
+}
+
+exports.onCreateWebpackConfig = ({
+  stage,
+  rules,
+  loaders,
+  plugins,
+  actions,
+}) => {
+  actions.setWebpackConfig({
+    module: {
+      rules: [
+        {
+            test: /.js$/,
+            loader: 'flowtype-loader',
+            enforce: 'pre',
+            exclude: /node_modules/
+        }
+      ],
+    },
+    plugins: [
+      new FlowtypePlugin()
+    ],
+  })
 }
